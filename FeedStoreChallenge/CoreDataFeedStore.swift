@@ -49,7 +49,7 @@ public final class CoreDataFeedStore: FeedStore {
 		let context = self.context
 		context.perform {
 			do {
-				let cache = ManagedCache(context: context)
+				let cache = try ManagedCache.newUniqueInstance(in: context)
 				cache.timestamp = timestamp
 				cache.feed = NSOrderedSet(array: feed.map { item in
 					let managed = ManagedFeedImage(context: context)
