@@ -29,8 +29,7 @@ public final class CoreDataFeedStore: FeedStore {
 	}
 
 	public func retrieve(completion: @escaping RetrievalCompletion) {
-		let context = self.context
-		context.perform {
+		context.perform { [context] in
 			do {
 				let request = NSFetchRequest<ManagedCache>(entityName: "\(ManagedCache.self)")
 				request.returnsObjectsAsFaults = false
@@ -46,8 +45,7 @@ public final class CoreDataFeedStore: FeedStore {
 	}
 
 	public func insert(_ feed: [LocalFeedImage], timestamp: Date, completion: @escaping InsertionCompletion) {
-		let context = self.context
-		context.perform {
+		context.perform { [context] in
 			do {
 				let cache = try ManagedCache.newUniqueInstance(in: context)
 				cache.timestamp = timestamp
@@ -62,8 +60,7 @@ public final class CoreDataFeedStore: FeedStore {
 	}
 
 	public func deleteCachedFeed(completion: @escaping DeletionCompletion) {
-		let context = self.context
-		context.perform {
+		context.perform { [context] in
 			do {
 				if let cache = try ManagedCache.find(in: context) {
 					context.delete(cache)
