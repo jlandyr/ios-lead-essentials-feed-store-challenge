@@ -25,6 +25,10 @@ final class ManagedCache: NSManagedObject {
 		return try context.fetch(request).first
 	}
 
+	static func delete(context: NSManagedObjectContext) throws {
+		try find(in: context).map(context.delete)
+	}
+
 	var localFeed: [LocalFeedImage] {
 		return feed.compactMap { ($0 as? ManagedFeedImage) }.map { LocalFeedImage(id: $0.id, description: $0.imageDescription, location: $0.location, url: $0.url) }
 	}
