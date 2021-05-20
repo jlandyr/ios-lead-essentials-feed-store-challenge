@@ -121,14 +121,6 @@ class FeedStoreChallengeTests: XCTestCase, FailableFeedStoreSpecs {
 	}
 
 	func test_delete_deliversErrorOnDeletionError() throws {
-<<<<<<< HEAD
-		let stub = NSManagedObjectContext.alwaysFailingSaveStub()
-		stub.startIntercepting()
-
-		let sut = try makeSUT()
-
-		assertThatDeleteDeliversErrorOnDeletionError(on: sut)
-=======
 //		let stub = NSManagedObjectContext.alwaysFailingSaveStub()
 //		let feed = uniqueImageFeed()
 //		let timestamp = Date()
@@ -141,7 +133,6 @@ class FeedStoreChallengeTests: XCTestCase, FailableFeedStoreSpecs {
 //		let deletionError = deleteCache(from: sut)
 //
 //		XCTAssertNotNil(deletionError, "Expected cache deletion to fail")
->>>>>>> bba6da79bb6b3efa32d6948f0f24efde895b2c8d
 	}
 
 	func test_delete_hasNoSideEffectsOnDeletionError() throws {
