@@ -61,7 +61,9 @@ public final class CoreDataFeedStore: FeedStore {
 		context.perform { [context] in
 			do {
 				try ManagedCache.delete(context: context)
-				try context.save()
+				if context.hasChanges {
+					try context.save()
+				}
 				completion(nil)
 			} catch {
 				context.rollback()
